@@ -23,7 +23,7 @@ namespace MoviesDashboard
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-            // Add DI for Repo
+            // Add DI for Repository
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddIdentity<AppUser, IdentityRole>(option =>
             {
