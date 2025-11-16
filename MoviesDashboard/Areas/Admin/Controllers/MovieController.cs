@@ -123,7 +123,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Admin/Movie/Edit/5
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -154,7 +153,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             return View(vm);
         }
 
-        // POST: Admin/Movie/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EditMovieVM vm)

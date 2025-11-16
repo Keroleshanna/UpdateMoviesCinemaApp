@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoviesDashboard.Data;
+using MoviesDashboard.Persistence.Context;
 using MoviesDashboard.Repositories.IRepositories;
 using System.Linq.Expressions;
 
@@ -7,9 +7,9 @@ namespace MoviesDashboard.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly DbSet<T> _dbSet;
-        public Repository(AppDbContext context)
+        public Repository(ApplicationDbContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();

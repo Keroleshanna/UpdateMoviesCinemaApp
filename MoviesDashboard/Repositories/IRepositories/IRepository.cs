@@ -12,13 +12,13 @@ namespace MoviesDashboard.Repositories.IRepositories
         Task<IEnumerable<T>> GetAllAsync(
             Expression<Func<T, bool>>? expression = null,
             Expression<Func<T, object>>[]? includes = null,
-            bool tracked = true,
+            bool tracker = true,
             CancellationToken cancellationToken = default);
 
         Task<T?> GetOneAsync(
             Expression<Func<T, bool>>? expression = null,
             Expression<Func<T, object>>[]? includes = null,
-            bool tracked = true,
+            bool tracker = true,
             CancellationToken cancellationToken = default);
 
         Task<int> CommitAsync(CancellationToken cancellationToken = default);

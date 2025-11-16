@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using MoviesDashboard.Data;
-using MoviesDashboard.Repositories;
-using MoviesDashboard.Repositories.IRepositories;
-
 namespace MoviesDashboard
 {
     public class Program
@@ -17,30 +11,27 @@ namespace MoviesDashboard
 
 
 
-            #region Added By Me
-            // Add DI for DbContext
-            builder.Services.AddDbContext<AppDbContext>(option =>
-                option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            #region Added By Me    
 
+            builder.Services.AddDIBusiness(builder);
 
             // Add DI for Repository
-            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            builder.Services.AddIdentity<AppUser, IdentityRole>(option =>
-            {
-                option.Password.RequiredLength = 8;
-                option.Password.RequireDigit = false;
-                option.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<AppDbContext>();
+            //builder.Services.AddIdentity<AppUser, IdentityRole>(option =>
+            //{
+            //    option.Password.RequiredLength = 8;
+            //    option.Password.RequireDigit = false;
+            //    option.User.RequireUniqueEmail = true;
+            //}).AddEntityFrameworkStores<AppDbContext>();
 
 
             // External Authentication - Google
-            builder.Services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    // Load credentials from appsettings.json
-                    options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
-                    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
-                });
+            //builder.Services.AddAuthentication()
+            //    .AddGoogle(options =>
+            //    {
+            //        // Load credentials from appsettings.json
+            //        options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
+            //        options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
+            //    });
             #endregion
 
 

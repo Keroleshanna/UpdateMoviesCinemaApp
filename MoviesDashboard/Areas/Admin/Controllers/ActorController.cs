@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MoviesDashboard.Data;
 using MoviesDashboard.Models;
 using MoviesDashboard.Repositories.IRepositories;
-using MoviesDashboard.ViewModels;
-using System.Threading.Tasks;
 
 namespace MoviesDashboard.Areas.Admin.Controllers
 {
@@ -17,7 +13,8 @@ namespace MoviesDashboard.Areas.Admin.Controllers
         {
             _actorRepo = ActorRepo;
         }
-        // GET: ActorController
+        
+
         public async Task<ActionResult> Index(int currentNumber = 1)
         {
             var actor = await _actorRepo.GetAllAsync();
@@ -27,16 +24,11 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             return View(actor.AsEnumerable());
         }
 
-
-
-        // GET: ActorController/Create
         public ActionResult Create()
         {
-            Actor actor = new();
-            return View(actor);
+            return View(new Actor());
         }
 
-        // POST: ActorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Actor actor, IFormFile img)
@@ -73,10 +65,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             }
         }
 
-
-
-
-        // GET: ActorController/Edit/5
         [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
@@ -84,7 +72,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             return View(actor);
         }
 
-        // POST: ActorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Actor actor, IFormFile img)
@@ -102,7 +89,7 @@ namespace MoviesDashboard.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var oldActor = await _actorRepo.GetOneAsync(a=> a.Id == actor.Id, tracked: false);
+                    var oldActor = await _actorRepo.GetOneAsync(a=> a.Id == actor.Id, tracker: false);
                     if (oldActor?.Img is not null)
                         fileName = oldActor.Img;
                 }
@@ -116,9 +103,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-
-
-
 
         public async Task<IActionResult> Delete(int id)
         {

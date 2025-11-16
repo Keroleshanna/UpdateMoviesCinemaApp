@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MoviesDashboard.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using MoviesDashboard.Models;
 using MoviesDashboard.Repositories.IRepositories;
 using MoviesDashboard.ViewModels;
-using System.Threading.Tasks;
 
 namespace MoviesDashboard.Areas.Admin.Controllers
 {
@@ -20,25 +16,20 @@ namespace MoviesDashboard.Areas.Admin.Controllers
         }
 
 
-
-        // GET: CategoryController
         public async Task<ActionResult> Index(int currentNumber = 1)
         {
-            var categories = await _Repository.GetAllAsync(tracked: false);
+            var categories = await _Repository.GetAllAsync(tracker: false);
             ViewData["PageNumbers"] = Math.Ceiling(categories.Count() / 8.0);
             ViewData["CurrentNumber"] = currentNumber;
             categories = categories.Skip((currentNumber - 1) * 8).Take(8);
             return View(categories);
         }
 
-        // GET: CategoryController/Create
         public ActionResult Create()
         {
-            CategoryVM category = new();
-            return View(category);
+            return View(new CategoryVM());
         }
 
-        // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CategoryVM category)
@@ -67,7 +58,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
 
         }
 
-        // GET: CategoryController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             var category = await _Repository.GetOneAsync(c => c.Id == id);
@@ -78,7 +68,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Category category)

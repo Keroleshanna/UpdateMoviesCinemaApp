@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MoviesDashboard.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using MoviesDashboard.Models;
 using MoviesDashboard.Repositories.IRepositories;
-using System.Threading.Tasks;
 
 namespace MoviesDashboard.Areas.Admin.Controllers
 {
@@ -18,11 +14,9 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             _Repository = repository;
         }
 
-
-        // GET: CinemaController
         public async Task<ActionResult> Index(int currentNumber = 1)
         {
-            var cinemas = await _Repository.GetAllAsync(tracked: false);
+            var cinemas = await _Repository.GetAllAsync(tracker: false);
             ViewData["CurrentNumber"] = currentNumber;
             ViewData["pageNumbers"] = Math.Ceiling(cinemas.Count() / 8.0);
             cinemas = cinemas.Skip((currentNumber - 1) * 8).Take(8);
@@ -30,17 +24,12 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             return View(cinemas);
         }
 
-
-
-
-        // GET: CinemaController/Create
         public ActionResult Create()
         {
             Cinema cinema = new();
             return View(cinema);
         }
 
-        // POST: CinemaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Cinema cinema, IFormFile image)
@@ -74,17 +63,12 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             }
         }
 
-
-
-
-        // GET: CinemaController/Edit/5
         public ActionResult Edit(int id)
         {
             var cinema = _Repository.GetOneAsync(a=>a.Id == id);
             return View(cinema);
         }
 
-        // POST: CinemaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Cinema cinema, IFormFile image)
@@ -92,7 +76,7 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             try
             {
                 string fileName;
-                var oldCinema = await _Repository.GetOneAsync(c => c.Id == cinema.Id, tracked: false);
+                var oldCinema = await _Repository.GetOneAsync(c => c.Id == cinema.Id, tracker: false);
                 if (image is not null)
                 {
                     fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
@@ -124,7 +108,6 @@ namespace MoviesDashboard.Areas.Admin.Controllers
             }
         }
 
-        // GET: CinemaController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
             var cinema = await _Repository.GetOneAsync(a=> a.Id == id);

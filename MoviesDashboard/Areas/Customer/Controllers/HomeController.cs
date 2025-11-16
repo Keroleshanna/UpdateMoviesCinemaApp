@@ -3,7 +3,7 @@ using MoviesDashboard.Models;
 using MoviesDashboard.Repositories.IRepositories;
 using System.Diagnostics;
 
-namespace ECommerce518.Areas.Customer.Controllers
+namespace MoviesDashboard.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller
@@ -17,16 +17,10 @@ namespace ECommerce518.Areas.Customer.Controllers
 
         public async Task<IActionResult> Index(int page = 1)
         {
-            var movies = await _movieRepository.GetAllAsync(tracked: false);
+            var movies = await _movieRepository.GetAllAsync(tracker: false);
             movies = movies.Skip((page - 1) * 8).Take(8);
             return View(movies);
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
