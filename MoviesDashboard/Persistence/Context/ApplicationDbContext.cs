@@ -23,5 +23,6 @@ namespace MoviesDashboard.Persistence.Context
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+        public DbSet<MoviesDashboard.ViewModels.Identity.RegisterVM> RegisterVM { get; set; } = default!;
     }
 }

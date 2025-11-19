@@ -38,7 +38,7 @@ namespace MoviesDashboard.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            CreateMovieVM createMovieVM = new()
+            MovieCreateVM createMovieVM = new()
             {
                 Categories = new SelectList(await _CategoryRepo.GetAllAsync(), "Id", "Name"),
                 Cinemas = new SelectList(await _CinemaRepo.GetAllAsync(), "Id", "Name"),
@@ -48,7 +48,7 @@ namespace MoviesDashboard.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateMovieVM vm)
+        public async Task<IActionResult> Create(MovieCreateVM vm)
         {
             ModelState.Remove(nameof(vm.Categories));
             ModelState.Remove(nameof(vm.Cinemas));

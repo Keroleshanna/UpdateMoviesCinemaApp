@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MoviesDashboard.ViewModels
+namespace MoviesDashboard.ViewModels.Identity
 {
     public class LoginVM
     {
         public int Id { get; set; }
 
         [Required]
-        public string UserNameOeEmail { get; set; } = string.Empty;
+        public string UserNameOrEmail { get; set; } = string.Empty;
         [Required, DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
 

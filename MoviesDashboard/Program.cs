@@ -15,23 +15,6 @@ namespace MoviesDashboard
 
             builder.Services.AddDIBusiness(builder);
 
-            // Add DI for Repository
-            //builder.Services.AddIdentity<AppUser, IdentityRole>(option =>
-            //{
-            //    option.Password.RequiredLength = 8;
-            //    option.Password.RequireDigit = false;
-            //    option.User.RequireUniqueEmail = true;
-            //}).AddEntityFrameworkStores<AppDbContext>();
-
-
-            // External Authentication - Google
-            //builder.Services.AddAuthentication()
-            //    .AddGoogle(options =>
-            //    {
-            //        // Load credentials from appsettings.json
-            //        options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
-            //        options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
-            //    });
             #endregion
 
 

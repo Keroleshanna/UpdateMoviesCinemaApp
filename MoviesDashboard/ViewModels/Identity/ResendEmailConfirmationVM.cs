@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MoviesDashboard.ViewModels
+namespace MoviesDashboard.ViewModels.Identity
 {
-    public class ForgetPasswordVM
+    public class ResendEmailConfirmationVM
     {
         public int Id { get; set; }
 

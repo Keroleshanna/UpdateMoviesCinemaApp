@@ -1,0 +1,48 @@
+﻿@model ResendEmailConfirmationVM
+
+@{
+	ViewData["Title"] = "Resend Confirmation Email";
+}
+
+<div class="d-flex justify-content-center align-items-center"
+	 style="min-height: 80vh; background-color: #f7f7f7;">
+
+	<div class="card shadow-lg p-4" style="width: 420px; border-radius: 15px;">
+
+		<div class="text-center mb-3">
+			<img src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
+				 width="70" alt="Email Icon">
+		</div>
+
+		<h3 class="text-center mb-3" style="font-weight: 700;">
+			Resend Confirmation Email
+		</h3>
+
+		<p class="text-center text-muted mb-4">
+			Enter your email address and we will send you a new confirmation link.
+		</p>
+
+		<form asp-action="ResendConfirmEmail" method="post">
+			<div class="text-danger" asp-validation-summary="All"></div>
+			<div class="mb-3">
+				<label class="form-label fw-bold" asp-for="UserNameOREmail">Email Address</label>
+				<input type="email" class="form-control form-control-lg"
+					   placeholder="example@example.com" asp-for="UserNameOREmail" />
+				<span class="text-danger" asp-validation-for="UserNameOREmail"></span>
+			</div>
+
+			<button class="btn btn-primary w-100 btn-lg" type="submit">
+				Send Confirmation Link
+			</button>
+		</form>
+
+		<hr class="my-4">
+
+		<div class="text-center">
+			<a asp-action="Login">Back to Login</a>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

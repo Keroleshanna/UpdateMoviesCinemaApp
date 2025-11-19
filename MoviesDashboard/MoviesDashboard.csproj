@@ -7,12 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Controllers\" />
-    <Folder Include="Areas\Identity\Views\" />
     <Folder Include="Persistence\Migrations\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="UOW\" />
-    <Folder Include="Services\" />
     <Folder Include="wwwroot\Images\Movies\" />
     <Folder Include="wwwroot\Images\Actors\" />
     <Folder Include="wwwroot\Images\Cinemas\" />
@@ -25,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
   </ItemGroup>
 
 </Project>
